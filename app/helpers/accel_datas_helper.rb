@@ -1,0 +1,2 @@
+module AccelDatasHelper
+end
