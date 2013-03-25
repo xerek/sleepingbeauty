@@ -24,7 +24,7 @@ class AccelDatasController < ApplicationController
     respond_to do |format|
       format.html
       format.xml { render :xml => @accel_datas }
-      format.text { render :text => @accel_datas.map{ |ad| [ad.x, ad.y, ad.z, ad.measure_time].join(",") }.join("\n") }
+      format.text { render :text => @accel_datas.map{ |ad| [ad.x, ad.y, ad.z, ad.measure_time.to_i].join(",") }.join("\n") }
     end
   end
 
