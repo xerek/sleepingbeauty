@@ -16,15 +16,16 @@ class AccelDatasController < ApplicationController
 
   def index
     if params[:start_time]
-      @accel_datas = AccelData.where("measure_time >= ?", params[:start_time])
+      start_time = DateTime.strptime(params[:start_time], "%s")
+      @accel_datas = AccelData.where("measure_time >= ?", start_time)
     else
       @accel_datas = AccelData.all
     end
 
     respond_to do |format|
-      # format.html
+      format.html
       format.xml { render :xml => @accel_datas }
-      format.text { render :text => @accel_datas.map{ |ad| [ad.x, ad.y, ad.z, ad.created_at.strftime("%Y-%m-%d-%H-%M-%S")].join(",") }.join("\n") }
+      format.text { render :text => @accel_datas.map{ |ad| [ad.x, ad.y, ad.z, ad.time_in_milliseconds].join(",") }.join("\n") }
     end
   end
 
