@@ -16,7 +16,7 @@ class AccelDatasController < ApplicationController
 
   def index
     if params[:start_time]
-      @accel_datas = AccelData.where("measure_time >= ?", params[:start_time].to_i)
+      @accel_datas = AccelData.where("measure_time >= ?", params[:start_time].to_f)
     else
       @accel_datas = AccelData.all
     end
