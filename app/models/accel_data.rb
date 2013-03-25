@@ -6,7 +6,7 @@ class AccelData < ActiveRecord::Base
   end
 
   def time_in_milliseconds=(milliseconds)
-    self.measure_time = DateTime.strptime((milliseconds/1000).to_s, "%s")
+    self.measure_time = DateTime.strptime((milliseconds.to_f/1000).to_s, "%s")
   end
 
 end
