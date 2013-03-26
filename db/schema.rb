@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130326223531) do
+ActiveRecord::Schema.define(:version => 20130326230654) do
 
   create_table "accel_data", :force => true do |t|
     t.float    "bpm"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(:version => 20130326223531) do
 
   create_table "heart_monitors", :force => true do |t|
     t.float    "bpm"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "light_powers", :force => true do |t|
+    t.float    "time"
+    t.boolean  "on"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

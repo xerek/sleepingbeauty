@@ -33,4 +33,6 @@ class LightPowerController < ApplicationController
     respond_to do |format|
       format.text { render :text => @last_status.on.to_i }
     end
+  end
+
 end
