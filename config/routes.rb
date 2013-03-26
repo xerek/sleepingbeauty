@@ -1,5 +1,7 @@
 SleepingBeauty::Application.routes.draw do
 
+  get "rough_movements/index"
+
   resources :accel_datas, :only => [:index, :create] 
 
   # The priority is based upon order of creation:
