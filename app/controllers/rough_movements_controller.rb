@@ -1,4 +1,4 @@
-class RoughMovem'entsController < ApplicationController
+class RoughMovementsController < ApplicationController
 
   def create
     @rough_mov = RoughMovement.new(params[:rough_mov])
