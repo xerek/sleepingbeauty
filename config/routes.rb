@@ -1,6 +1,6 @@
 SleepingBeauty::Application.routes.draw do
 
-  get "rough_movements/index"
+  resources :rough_movements, :only => [:index, :create] 
 
   resources :accel_datas, :only => [:index, :create] 
 
