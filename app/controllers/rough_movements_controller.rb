@@ -8,6 +8,9 @@
 #
 # Description
 #    Controller of MVC architecture for the rough movements in the accelerometer
+# Version Log
+#    3/27/2013, Matheus Camargo
+#       I added the json option for the rough movements
 #
 class RoughMovementsController < ApplicationController
 
@@ -25,7 +28,7 @@ class RoughMovementsController < ApplicationController
       end
     end
 
-	  render :nothing => true
+    render :nothing => true
   end
 
   # index
@@ -34,24 +37,25 @@ class RoughMovementsController < ApplicationController
   # Returns all accel_data, after start_time if given
   def index
     if params[:start_time]
-      @rough_mov = RoughMovement.where("time >= ?", params[:start_time].to_f)
+      @rough_movs = RoughMovement.where("time >= ?", params[:start_time].to_f)
     else
-      @rough_mov = RoughMovement.all
+      @rough_movs = RoughMovement.all
     end
 
     respond_to do |format|
       format.html
-      format.xml { render :xml => @rough_mov }
+      format.xml { render :xml => @rough_movs }
+      format.json { render :content_type => 'application/json' }
     end
   end
 
   # last_time
   # url get /rough_movements/last_time.txt
-  # Params: (optional) roughy
-  # Returns the last rough movement. If roughy = 1, returns the last roughy movement
+  # Params: (optional) really_rough
+  # Returns the last rough movement. If really_rough = 1, returns the last really rough movement
   def last_time
-    if params[:roughy] and params[:roughy] == "1"
-      @rough_mov = RoughMovement.where("roughy = ?", true).last
+    if params[:really_rough] and params[:really_rough] == "1"
+      @rough_mov = RoughMovement.where("really_rough = ?", true).last
     else
       @rough_mov = RoughMovement.last
     end

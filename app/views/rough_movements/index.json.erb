@@ -1,0 +1,14 @@
+[
+	{
+		"label": "x",
+		"data": <%= @rough_movs.map{ |rv| [rv.time, rv.x] } %>
+	},
+	{
+		"label": "y",
+		"data": <%= @rough_movs.map{ |rv| [rv.time, rv.y] } %>
+	},
+	{
+		"label": "z",
+		"data": <%= @rough_movs.map{ |rv| [rv.time, rv.z] } %>
+	}
+]

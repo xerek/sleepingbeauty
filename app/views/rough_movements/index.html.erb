@@ -7,7 +7,69 @@
  Date: Mar., 25, 2013
 
  Description:
- 	View of MVC architecture for rough movements index
+ 	View of MVC architecture for accelerometer rough movements index
+ 	It shows the accelerometer graph based on the rough movements
 %>
-<h1>RoughMovements#index</h1>
-<p>Find me in app/views/rough_movements/index.html.erb</p>
+
+<%= javascript_include_tag "jquery", "jquery.flot", "jquery.flot.selection" %>
+
+<div id="chart"></div>
+<div id="overview"></div>
+
+<script type="text/javascript">
+	$(function () {
+
+		$("#chart").height(500).width($(window).width() - 200).css("margin", "40px auto 20px");
+		$("#overview").height(100).width($(window).width() - 100).css("margin", "20px auto 20px");
+
+		var plot, overview;
+
+		var plot_options = {
+			xaxis: { mode: "time" },
+    		selection: { mode: "x" }
+		};
+		var overview_options = {
+			series: {
+				lines: { show: true, lineWidth: 1 },
+				shadowSize: 0
+			},
+			xaxis: { mode: "time" },
+			yaxis: { ticks: [], autoscaleMargin: 0.1 },
+			selection: { mode: "x" },
+			legend: { show: false }
+		};
+
+		var data = [
+			{
+				"label": "x",
+				"data": <%= @rough_movs.map{ |rv| [rv.time, rv.x] } %>
+			},
+			{
+				"label": "y",
+				"data": <%= @rough_movs.map{ |rv| [rv.time, rv.y] } %>
+			},
+			{
+				"label": "z",
+				"data": <%= @rough_movs.map{ |rv| [rv.time, rv.z] } %>
+			}
+		];
+
+		plot = $.plot($("#chart"), data, plot_options);
+		overview =  $.plot($("#overview"), data, overview_options);
+
+		$("#chart").bind("plotselected", function (event, ranges) {
+			// do the zooming
+			plot = $.plot($("#chart"), data,
+				$.extend(true, {}, plot_options, {
+					xaxis: { min: ranges.xaxis.from, max: ranges.xaxis.to }
+			}));
+			// don't fire event on the overview to prevent eternal loop
+			overview.setSelection(ranges, true);
+		});
+    
+		$("#overview").bind("plotselected", function (event, ranges) {
+			plot.setSelection(ranges);
+		});
+
+	});
+</script>

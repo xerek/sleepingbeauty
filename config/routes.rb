@@ -22,8 +22,6 @@ SleepingBeauty::Application.routes.draw do
     get "last_time" => "rough_movements#last_time", :on => :collection
   end
 
-  resources :accel_datas, :only => [:index, :create] 
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

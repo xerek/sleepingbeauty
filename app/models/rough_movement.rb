@@ -8,17 +8,17 @@
 #
 # Description
 #   Model of MVC architecture for the rough movement data
+# Version Log
+#   3/27/2013, Matheus Camargo
+#      Added x, y, z to calculate the linear accelaration in the plot
 #
 class RoughMovement < ActiveRecord::Base
-  attr_accessible :roughy, :time
+  attr_accessible :really_rough, :time, :x, :y, :z
 
-  validates :roughy, :inclusion => { :in => [true, false] }
+  validates :really_rough, :inclusion => { :in => [true, false] }
   validates :time, :presence => true
-
-  after_create do
-    if self.roughy?
-      LightPower.create(:time => self.time, :on => true)
-    end
-  end
+  validates :x, :presence => true
+  validates :y, :presence => true
+  validates :z, :presence => true
 
 end
