@@ -14,6 +14,10 @@
 #
 class AccelDatasController < ApplicationController
 
+  # create
+  # url post /accel_datas
+  # This method creates a set AccelDatas from post of format 
+  # accel_data[i][x]; accel_data[i][y]; accel_data[i][z]; accel_data[i][measure_time]
   def create
     params[:accel_data].each do |id, parameters|
       begin
@@ -27,6 +31,11 @@ class AccelDatasController < ApplicationController
 	render :nothing => true
   end
 
+  # index
+  # url get /accel_datas.xml
+  # url get /accel_datas.txt
+  # Params: (optional) start_time
+  # Returns all accel_data, after start_time if given
   def index
     if params[:start_time]
       @accel_datas = AccelData.where("measure_time >= ?", params[:start_time].to_f)
