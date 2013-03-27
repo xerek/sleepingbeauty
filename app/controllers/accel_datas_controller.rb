@@ -32,6 +32,7 @@ class AccelDatasController < ApplicationController
   end
 
   # index
+  # url get /accel_datas
   # url get /accel_datas.xml
   # url get /accel_datas.txt
   # Params: (optional) start_time
