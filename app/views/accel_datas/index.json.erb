@@ -1,14 +1,14 @@
 [
 	{
 		"label": "x",
-		"data": <%= @accel_datas.map{ |ad| [ad.x, ad.measure_time] } %>
+		"data": <%= @accel_datas.map{ |ad| [ad.measure_time, ad.x] } %>
 	},
 	{
 		"label": "y",
-		"data": <%= @accel_datas.map{ |ad| [ad.y, ad.measure_time] } %>
+		"data": <%= @accel_datas.map{ |ad| [ad.measure_time, ad.y] } %>
 	},
 	{
 		"label": "z",
-		"data": <%= @accel_datas.map{ |ad| [ad.z, ad.measure_time] } %>
+		"data": <%= @accel_datas.map{ |ad| [ad.measure_time, ad.z] } %>
 	}
 ]
