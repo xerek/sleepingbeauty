@@ -4,9 +4,7 @@ SleepingBeauty::Application.routes.draw do
     get "last" => "light_power#last", :on => :collection
   end
 
-  resources :rough_movements, :only => [:index, :create] do
-    get "last_time" => "rough_movements#last_time", :on => :collection
-  end
+  resources :rough_movements, :only => [:index, :create] 
 
   resources :accel_datas, :only => [:index, :create] 
 
