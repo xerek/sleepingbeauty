@@ -4,7 +4,7 @@ class AccelDatasController < ApplicationController
     params[:accel_data].each do |id, parameters|
       begin
         AccelData.create(params[:accel_data])
-      rescue Exception > error
+      rescue GoogleSpreadsheet::Error > error
         warn error
         retry
       end
