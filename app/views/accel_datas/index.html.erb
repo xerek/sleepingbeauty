@@ -18,7 +18,7 @@
             method: 'GET',
             dataType: 'json',
             success: function (series) {
-				$.plot($("#chart"), [series], options);
+				$.plot($("#chart"), series, options);
 	    	}
         });
 
