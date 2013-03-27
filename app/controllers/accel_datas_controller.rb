@@ -38,6 +38,7 @@ class AccelDatasController < ApplicationController
       format.html
       format.xml { render :xml => @accel_datas }
       format.text { render :text => @accel_datas.map{ |ad| [ad.x, ad.y, ad.z, ad.measure_time.to_i].join(",") }.join("\n") }
+      format.json { render :content_type => 'application/json' }
     end
   end
 

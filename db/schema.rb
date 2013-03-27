@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(:version => 20130326230654) do
     t.float    "x"
     t.float    "y"
     t.float    "z"
+    t.float    "measure_time"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.integer  "measure_time"
   end
 
   create_table "heart_monitors", :force => true do |t|
