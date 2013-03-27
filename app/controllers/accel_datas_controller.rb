@@ -29,9 +29,9 @@ class AccelDatasController < ApplicationController
 
   def index
     if params[:start_time]
-      @accel_datas = AccelData.where("measure_time >= ?", params[:start_time].to_f)
+      @accel_datas = AccelData.where("measure_time >= ?", params[:start_time].to_f).order("measure_time")
     else
-      @accel_datas = AccelData.all
+      @accel_datas = AccelData.order("measure_time")
     end
 
     respond_to do |format|
