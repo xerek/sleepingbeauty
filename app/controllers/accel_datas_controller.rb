@@ -1,3 +1,17 @@
+#    accel_datas_controller.rb
+# Purpose: Mid term demo
+# Author: Matheus Camargo
+#         matheus@go.wustl.edu
+# CSE 467S -- Embedded Computing Systems
+# WUSTL, Spring 2013
+# Date: Mar., 23, 2013
+#
+# Description
+#    Controller of MVC architecture for the accelerometer datas
+# Version log
+#    3/26/2013, Matheus Camargo
+#        Change the creation of datas from one to multiple per request
+#
 class AccelDatasController < ApplicationController
 
   def create
