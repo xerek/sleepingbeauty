@@ -1,17 +1,16 @@
 class RoughMovementsController < ApplicationController
 
   def create
-    @rough_mov = RoughMovement.new(params[:rough_mov])
-
-    respond_to do |format|
-      if @rough_mov.save
-        # format.html
-        format.xml { render :xml => @rough_mov, :status => :created, :location => @rough_mov }
-      else
-        # format.html
-        format.xml { render :xml => @rough_mov.errors, :status => :unprocessable_entity }
+    params[:rough_mov].each do |id, parameters|
+      begin
+        RoughMovement.create(parameters)
+      rescue Exception > error
+        warn error
+        retry
       end
     end
+
+	render :nothing => true
   end
 
   def index
