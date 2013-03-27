@@ -32,9 +32,9 @@ class RoughMovementsController < ApplicationController
   # Returns all accel_data, after start_time if given
   def index
     if params[:start_time]
-      @rough_movs = RoughMovement.where("time >= ?", params[:start_time].to_f)
+      @rough_movs = RoughMovement.where("time >= ?", params[:start_time].to_f).order("time")
     else
-      @rough_movs = RoughMovement.all
+      @rough_movs = RoughMovement.order("time")
     end
 
     respond_to do |format|
