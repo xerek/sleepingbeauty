@@ -3,7 +3,7 @@ class AccelDatasController < ApplicationController
   def create
     params[:accel_data].each do |id, parameters|
       begin
-        AccelData.create(params[:accel_data])
+        AccelData.create(parameters)
       rescue Exception > error
         warn error
         retry
