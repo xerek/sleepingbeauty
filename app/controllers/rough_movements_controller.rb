@@ -19,13 +19,8 @@ class RoughMovementsController < ApplicationController
   # This method creates a set Rough movements from post of format 
   # rough_mov[i][roughy]; rough_mov[i][time]
   def create
-    params[:rough_mov].each do |id, parameters|
-      begin
-        RoughMovement.create(parameters)
-      rescue Exception > error
-        warn error
-        retry
-      end
+    params[:rough_movs].each do |id, parameters|
+      RoughMovement.create(parameters)
     end
 
     render :nothing => true
