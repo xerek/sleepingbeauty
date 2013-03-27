@@ -1,3 +1,17 @@
+#    routes.rb
+# Purpose: Mid term demo
+# Author: Matheus Camargo
+#         matheus@go.wustl.edu
+# CSE 467S -- Embedded Computing Systems
+# WUSTL, Spring 2013
+# Date: Mar., 23, 2013
+#
+# Description
+#    Configure url routes of the website
+# Version log
+#    3/26/2013, Matheus Camargo
+#       Adding routes for light power and rough movements controllers
+#
 SleepingBeauty::Application.routes.draw do
 
   resources :light_power, :only => [:index, :create] do

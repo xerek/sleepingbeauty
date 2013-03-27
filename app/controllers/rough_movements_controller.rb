@@ -11,6 +11,10 @@
 #
 class RoughMovementsController < ApplicationController
 
+  # create
+  # url post /rough_movements
+  # This method creates a set Rough movements from post of format 
+  # rough_mov[i][roughy]; rough_mov[i][time]
   def create
     params[:rough_mov].each do |id, parameters|
       begin
@@ -21,9 +25,13 @@ class RoughMovementsController < ApplicationController
       end
     end
 
-	render :nothing => true
+	  render :nothing => true
   end
 
+  # index
+  # url get /rough_movements.xml
+  # Params: (optional) start_time
+  # Returns all accel_data, after start_time if given
   def index
     if params[:start_time]
       @rough_mov = RoughMovement.where("time >= ?", params[:start_time].to_f)
@@ -37,6 +45,10 @@ class RoughMovementsController < ApplicationController
     end
   end
 
+  # last_time
+  # url get /rough_movements/last_time.txt
+  # Params: (optional) roughy
+  # Returns the last rough movement. If roughy = 1, returns the last roughy movement
   def last_time
     if params[:roughy] and params[:roughy] == "1"
       @rough_mov = RoughMovement.where("roughy = ?", true).last

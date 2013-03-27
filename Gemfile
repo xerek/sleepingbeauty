@@ -1,3 +1,14 @@
+#    Gemfile
+# Purpose: Mid term demo
+# Author: Matheus Camargo
+#         matheus@go.wustl.edu
+# CSE 467S -- Embedded Computing Systems
+# WUSTL, Spring 2013
+# Date: Mar., 23, 2013
+#
+# Description
+#    Defines dependencies of the project
+#
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
