@@ -5,7 +5,7 @@
 	},
 	{
 		"label": "y",
-		"data": <%= @accel_datas.last(300)map{ |ad| [ad.measure_time, ad.y] } %>
+		"data": <%= @accel_datas.last(300).map{ |ad| [ad.measure_time, ad.y] } %>
 	},
 	{
 		"label": "z",
