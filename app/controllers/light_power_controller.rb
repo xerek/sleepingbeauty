@@ -31,7 +31,11 @@ class LightPowerController < ApplicationController
     @last_status = LightPower.last
 
     respond_to do |format|
-      format.text { render :text => @last_status.on.to_i }
+      if @last_status
+        format.text { render :text => @last_status.on : "1" ? "0" }
+      else
+        format.text { render :text => "0" }
+      end
     end
   end
 
