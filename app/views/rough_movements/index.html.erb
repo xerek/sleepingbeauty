@@ -54,23 +54,8 @@
 			}
 		];
 
-		var overview_data = [
-			{
-				"label": "x",
-				"data": <%= @overview_movs.map{ |rv| [rv.time, rv.x] } %>
-			},
-			{
-				"label": "y",
-				"data": <%= @overview_movs.map{ |rv| [rv.time, rv.y] } %>
-			},
-			{
-				"label": "z",
-				"data": <%= @overview_movs.map{ |rv| [rv.time, rv.z] } %>
-			}
-		];
-
-		plot = $.plot($("#chart"), data.slice(0, 2000), plot_options);
-		overview =  $.plot($("#overview"), overview_data, overview_options);
+		plot = $.plot($("#chart"), data, plot_options);
+		overview =  $.plot($("#overview"), data, overview_options);
 
 		$("#chart").bind("plotselected", function (event, ranges) {
 			// do the zooming
