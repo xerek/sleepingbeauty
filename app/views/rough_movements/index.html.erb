@@ -69,7 +69,7 @@
 			}
 		];
 
-		plot = $.plot($("#chart"), [], plot_options);
+		plot = $.plot($("#chart"), data.slice(0, 2000), plot_options);
 		overview =  $.plot($("#overview"), overview_data, overview_options);
 
 		$("#chart").bind("plotselected", function (event, ranges) {
