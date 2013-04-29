@@ -37,7 +37,7 @@ class RoughMovementsController < ApplicationController
       @rough_movs = RoughMovement.order("time")
     end
 
-    @rough_movs = @rough_movs.each_slice([@rough_movs.size, 2000].max/2000).map(&:first)
+    @rough_movs = @rough_movs.each_slice([@rough_movs.size, 2000].max/2000).map(&:first) + [@rough_movs.last]
 
     respond_to do |format|
       format.html
