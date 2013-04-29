@@ -37,6 +37,8 @@ class RoughMovementsController < ApplicationController
       @rough_movs = RoughMovement.order("time")
     end
 
+    @overview_movs = @rough_movs.each_slice([@rough_movs.size, 2000].max/2000).map(&:first)
+
     respond_to do |format|
       format.html
       format.xml { render :xml => @rough_movs }

@@ -25,7 +25,7 @@
 		var plot, overview;
 
 		var plot_options = {
-			xaxis: { mode: "time" },
+			xaxis: { mode: "time" <% if @rough_movs.size > 0 %>, min: <%= @rough_movs.first.x %>, max: <%= (@rough_movs[2000] || @rough_movs.last).x %> <% end %>},
     		selection: { mode: "x" }
 		};
 		var overview_options = {
@@ -42,15 +42,15 @@
 		var data = [
 			{
 				"label": "x",
-				"data": <%= @rough_movs.map{ |rv| [rv.time, rv.x] } %>
+				"data": <%= @overview_movs.map{ |rv| [rv.time, rv.x] } %>
 			},
 			{
 				"label": "y",
-				"data": <%= @rough_movs.map{ |rv| [rv.time, rv.y] } %>
+				"data": <%= @overview_movs.map{ |rv| [rv.time, rv.y] } %>
 			},
 			{
 				"label": "z",
-				"data": <%= @rough_movs.map{ |rv| [rv.time, rv.z] } %>
+				"data": <%= @overview_movs.map{ |rv| [rv.time, rv.z] } %>
 			}
 		];
 
