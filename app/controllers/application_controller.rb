@@ -10,4 +10,13 @@
 #
 class ApplicationController < ActionController::Base
   protect_from_forgery
+
+  def reset_system
+  	RoughMovement.destroy_all
+  	HeartRate.destroy_all
+  	LightPower.destroy_all
+
+  	redirect_to root_path
+  end
+
 end

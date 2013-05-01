@@ -25,6 +25,8 @@ SleepingBeauty::Application.routes.draw do
     get "last_time" => "rough_movements#last_time", :on => :collection
   end
 
+  delete "reset_system" => "application#reset_system", :as => :reset_system
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -74,7 +76,7 @@ SleepingBeauty::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => redirect('/rough_movements')
+  root :to => redirect('/light_power')
 
   # See how all your routes lay out with "rake routes"
 

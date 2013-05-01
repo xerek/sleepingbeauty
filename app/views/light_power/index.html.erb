@@ -9,7 +9,7 @@
  Description:
  	View of MVC architecture for light power index
 %>
-<%= javascript_include_tag "jquery" %>
+<%= javascript_include_tag "application", "jquery" %>
 
 <style>
 	body {
@@ -34,6 +34,114 @@
 
 <div id="light">
 </div>
+
+<style>
+	#nav {
+		position:fixed;
+		left:10px;
+		top:14px;
+		font: 15px Helvetica, Arial, sans-serif;
+		z-index: 850;
+	}
+	#nav .info {
+		width:30px;
+		height:30px;
+		position:absolute;
+		top:0;
+		left:0;
+		cursor: pointer;
+		background-image: url('<%= asset_path 'images/info.png' %>');
+	}
+	#nav a {
+		color: rgb(85, 85, 85);
+		text-decoration: none;
+	}
+	#nav a:hover {
+		color: black;
+	}
+	#nav .menu {
+		white-space: nowrap;
+		position:absolute;
+		margin-left: 40px;
+		top:0px;
+		display: none;
+	}
+	#nav .links {
+		margin-left:4px;
+		border: 1px solid rgb(190, 190, 190);
+		background-color: #F6F6F6;
+		box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+		border-radius: 3px 3px 3px 3px;
+		z-index: 810;
+	}
+	#nav .links ul {
+		margin: 0px;
+		padding: 0px;
+		list-style: none;
+	}
+	#nav .links ul li {
+		border-bottom: 1px solid white;
+	}
+	#nav .links ul li:last-child {
+		border-bottom: none;
+		border-radius: 0px 0px 3px 3px;
+	}
+	#nav .links ul li:first-child {
+		border-radius: 3px 3px 0px 0px;
+	}
+	#nav .links ul li a {
+		padding: 9px 11px;
+		display: block;
+	}
+	#nav .links ul li:hover {
+		background-color: #F2F2F2;
+	}
+	#nav .arrow {
+		background-image: url('<%= asset_path 'images/arrow.gif' %>');
+		height:8px;
+		width:5px;
+		position:absolute;
+		z-index:910;
+		top:12px;
+		left: 0px;
+	}
+	#invisible {
+		margin:0;
+		padding: 0;
+		width:100%;
+		height:100%;
+		position: absolute;
+		top:0;
+		left:0;
+		display:none;
+		z-index:710;
+	}
+</style>
+<div id="nav">
+	<a class="info"></a>
+	<div class="menu">
+		<div class="links">
+			<ul>
+				<li><%= link_to "Heart Rates Graph", heart_rates_path %></li>
+				<li><%= link_to "Rough Movements Graph", rough_movements_path %></li>
+				<li><%= link_to "Light Power Status", light_power_index_path %></li>
+				<li><%= link_to 'Reset System', reset_system_path, :method => :delete, :data => { confirm: 'Are you sure?' } %></li>
+			</ul>
+		</div>
+		<span class="arrow"></span>
+	</div>
+</div>
+<div id="invisible"></div>
+<script>
+	$(".info").bind("click", function() {
+		$(".menu").toggle();
+		$("#invisible").toggle();			
+	});
+	$("#invisible").bind("click", function() {
+		$(".menu").hide();
+		$("#invisible").hide();
+	});
+</script>
 
 <script type="text/javascript">
 
