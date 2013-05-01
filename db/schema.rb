@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130326230654) do
+ActiveRecord::Schema.define(:version => 20130501071133) do
+
+  create_table "heart_rates", :force => true do |t|
+    t.integer  "rate"
+    t.float    "time"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "light_powers", :force => true do |t|
     t.float    "time"

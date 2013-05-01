@@ -14,6 +14,9 @@
 #
 SleepingBeauty::Application.routes.draw do
 
+
+  resources :heart_rates, :only => [:index, :create]
+
   resources :light_power, :only => [:index, :create] do
     get "last" => "light_power#last", :on => :collection
   end
