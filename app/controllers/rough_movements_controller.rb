@@ -38,6 +38,7 @@ class RoughMovementsController < ApplicationController
     end
 
     @rough_movs = @rough_movs.each_slice([@rough_movs.size, 2000].max/2000).map(&:first) + [@rough_movs.last]
+    @rough_movs.uniq!
 
     respond_to do |format|
       format.html
