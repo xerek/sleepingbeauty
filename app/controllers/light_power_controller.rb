@@ -35,14 +35,14 @@ class LightPowerController < ApplicationController
   # Returns all accel_data, after start_time if given
   def index
     if params[:start_time]
-      @light_power = LightPower.where("time >= ?", params[:start_time].to_f)
+      @light_powers = LightPower.where("time >= ?", params[:start_time].to_f)
     else
-      @light_power = LightPower.all
+      @light_powers = LightPower.all
     end
 
     respond_to do |format|
       format.html
-      format.xml { render :xml => @light_power }
+      format.xml { render :xml => @light_powers }
     end
   end
 
@@ -55,8 +55,10 @@ class LightPowerController < ApplicationController
     respond_to do |format|
       if @last_status
         format.text { render :text => (@last_status.on ? "1," : "0,") + @last_status.time.to_i.to_s }
+        format.json { render :json => @last_status, :only => :on }
       else
         format.text { render :text => "0,0" }
+        format.json { render :json => { "on" => false } }
       end
     end
   end

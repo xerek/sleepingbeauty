@@ -9,5 +9,50 @@
  Description:
  	View of MVC architecture for light power index
 %>
-<h1>LightPower#index</h1>
-<p>Find me in app/views/light_power/index.html.erb</p>
+<%= javascript_include_tag "jquery" %>
+
+<style>
+	body {
+		background-color: black;
+	}
+	#light {
+		width: 600px;
+		height: 600px;
+		margin: 30px auto 0;
+	}
+	.on {
+		background-position: center;
+		background-repeat: no-repeat;
+		background-image: url('<%= asset_path 'images/light_on.jpg' %>');
+	}
+	.off {
+		background-position: center;
+		background-repeat: no-repeat;
+		background-image: url('<%= asset_path 'images/light_off.jpg' %>');
+	}
+</style>
+
+<div id="light">
+</div>
+
+<script type="text/javascript">
+
+	function update_light() {
+	    $.ajax({
+	        url: "<%= last_light_power_index_url :format => :json %>",
+	        success: function (last_light_power) {
+	        	if(last_light_power.on) {
+	        		$("#light").addClass("on").removeClass("off");
+	        	} else {
+	        		$("#light").addClass("off").removeClass("on");
+	        	}
+	        	setTimeout(update_light, 200);
+	        }
+	    });
+	}
+
+	$(function () {
+		update_light();
+	});
+
+</script>
